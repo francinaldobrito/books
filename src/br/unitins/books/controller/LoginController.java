@@ -1,6 +1,6 @@
 package br.unitins.books.controller;
 
-import javax.faces.bean.RequestScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 @Named
