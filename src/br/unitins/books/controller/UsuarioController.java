@@ -1,6 +1,8 @@
 package br.unitins.books.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -13,10 +15,41 @@ import br.unitins.books.model.Usuario;
 public class UsuarioController implements Serializable {
 
 	private static final long serialVersionUID = -563227102506849534L;
-private Usuario usuario;
-	
+
+	private Usuario usuario;
+	private List<Usuario> listaUsuario;
+
 	public void incluir() {
-		System.out.println(getUsuario().getNome());
+		
+		getListaUsuario().add(getUsuario());
+		limpar();
+
+	}
+
+	public void alterar() {
+
+	}
+
+	public void remover() {
+		
+		getListaUsuario().remove(getUsuario());
+		limpar();
+
+	}
+
+	public void editar(Usuario usu) {
+		setUsuario(usu);
+	}
+
+	public void limpar() {
+
+		usuario = null;
+	}
+
+	public List<Usuario> getListaUsuario() {
+		if (listaUsuario == null)
+			listaUsuario = new ArrayList<Usuario>();
+		return listaUsuario;
 	}
 
 	public Usuario getUsuario() {
