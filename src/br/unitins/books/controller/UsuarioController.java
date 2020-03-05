@@ -20,7 +20,7 @@ public class UsuarioController implements Serializable {
 	private List<Usuario> listaUsuario;
 
 	public void incluir() {
-		
+
 		getListaUsuario().add(getUsuario());
 		limpar();
 
@@ -31,14 +31,14 @@ public class UsuarioController implements Serializable {
 	}
 
 	public void remover() {
-		
+
 		getListaUsuario().remove(getUsuario());
 		limpar();
 
 	}
 
 	public void editar(Usuario usu) {
-		setUsuario(usu);
+		setUsuario((Usuario) usu.getClone());
 	}
 
 	public void limpar() {
