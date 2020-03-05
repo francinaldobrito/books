@@ -7,6 +7,7 @@ import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import br.unitins.books.application.Util;
 import br.unitins.books.model.Usuario;
 
 @Named
@@ -20,14 +21,22 @@ public class UsuarioController implements Serializable {
 	private List<Usuario> listaUsuario;
 
 	public void incluir() {
-
+		if (getUsuario().getNome().isBlank()) {
+			Util.addErrorMessage("O campo nome deve ser informado");
+			return;
+		}
+		getUsuario().setId(proximoId());
 		getListaUsuario().add(getUsuario());
 		limpar();
 
 	}
 
 	public void alterar() {
-
+		// obtendo o index de referencia da lista
+		int index = listaUsuario.indexOf(getUsuario());
+		// substituindo os dados da lista pelo indice
+		listaUsuario.set(index, getUsuario());
+		limpar();
 	}
 
 	public void remover() {
@@ -44,6 +53,15 @@ public class UsuarioController implements Serializable {
 	public void limpar() {
 
 		usuario = null;
+	}
+
+	private int proximoId() {
+		int resultado = 0;
+		for (Usuario usuario : listaUsuario) {
+			if (usuario.getId() > resultado)
+				resultado = usuario.getId();
+		}
+		return ++resultado;
 	}
 
 	public List<Usuario> getListaUsuario() {
