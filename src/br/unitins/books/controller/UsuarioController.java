@@ -8,6 +8,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import br.unitins.books.application.Util;
+import br.unitins.books.model.TipoUsuario;
 import br.unitins.books.model.Usuario;
 
 @Named
@@ -78,6 +79,10 @@ public class UsuarioController implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public TipoUsuario[] getListaTipoUsuario() {
+		return TipoUsuario.values();
 	}
 
 }

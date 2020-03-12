@@ -12,12 +12,23 @@
 		<h:panelGrid columns="2">
 			<h:outputLabel value="Nome:" />
 			<h:inputText value="#{usuarioController.usuario.nome}" />
+			<h:outputLabel value="Data de Nascimeto:" />
+			<h:inputText value="#{usuarioController.usuario.dataNascimento}">
+				<!-- convertendo Data na pagina -->
+				<f:convertDateTime pattern="dd/MM/yyyy" type="localDate" />
+			</h:inputText>
 			<h:outputLabel value="Login:" />
 			<h:inputText value="#{usuarioController.usuario.login}" />
 			<h:outputLabel value="Senha:" />
-			<h:inputSecret value="#{usuarioController.usuario.senha}" />
+			<h:inputSecret value="#{usuarioController.usuario.senha}"  required="true" requiredMessage="A senha deve ser informada."/>
 			<h:outputLabel value="E-mail:" />
 			<h:inputText value="#{usuarioController.usuario.email}" />
+			<h:outputLabel value="Tipo de Usuário:" />
+			<!-- Controle de Usuário -->
+			<h:selectOneMenu value="#{usuarioController.usuario.tipoUsuario}">
+				<f:selectItem itemLabel="Selecione um tipo"/>
+				<f:selectItems value="#{usuarioController.listaTipoUsuario}" var="tipo" itemLabel="#{tipo.label}"/>
+			</h:selectOneMenu>
 		</h:panelGrid>
 		<h:commandButton value="Incluir"
 			disabled="#{usuarioController.usuario.id != null}"
@@ -40,6 +51,10 @@
 			<h:column>
 				<f:facet name="header">Nome</f:facet>
 				<h:outputLabel value="#{obj.nome}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Data de Nascimento</f:facet>
+				<h:outputLabel value="#{obj.dataNascimento}" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">Login</f:facet>
